@@ -1,15 +1,21 @@
 server:
   port: 8001
 spring:
+  profiles:
+    active: dev
   application:
     name: authentication-server
   cloud:
     nacos:
       discovery:
-        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
+        server-addr: 192.168.112.131:8848
       config:
-        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
+        server-addr: 192.168.112.131:8848
+#        ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
         file-extension: yml
+        refreshable-dataids: authentication-server.dev.yml,public-config.dev.yml
+        shared-dataids: public-config.dev.yml
     sentinel:
       transport:
-        dashboard: ${SENTINEL_DASHBOARD_HOST:localhost}:${SENTINEL_DASHBOARD_PORT:8021}
+        dashboard: 192.168.112.131:8858
+#        ${SENTINEL_DASHBOARD_HOST:localhost}:${SENTINEL_DASHBOARD_PORT:8021}

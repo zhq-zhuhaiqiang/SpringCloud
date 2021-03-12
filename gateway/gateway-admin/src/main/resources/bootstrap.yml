@@ -2,14 +2,19 @@ server:
   port: ${SERVER_PORT:8445}
 spring:
   application:
-    name: gateway-admin
+    name: gateway_admin
+  profiles:
+    active: local
   cloud:
     nacos:
       discovery:
-        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
+        server-addr: 192.168.112.131:8848
+        group: gateway
       config:
-        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
-        file-extension: yml
+        server-addr: 192.168.112.131:8848
+        group: gateway
+        file-extension: yaml
+        shared-dataids: public-config.dev.yml
     sentinel:
       transport:
-        dashboard: ${SENTINEL_DASHBOARD_HOST:localhost}:${SENTINEL_DASHBOARD_PORT:8021}
+        dashboard: 192.168.112.131:8858
